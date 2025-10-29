@@ -1,0 +1,27 @@
+project_name: "ETL IBGE População 2022"
+paths:
+  data_dir: "data"
+  bronze: "data/bronze"
+  silver: "data/silver"
+  gold:   "data/gold"
+
+# Fonte pública (CSV) com população por município (Censo 2022).
+# Se quiser usar outro dataset, troque a URL e os nomes de colunas nas transforms.
+source:
+  source_url: "https://ftp.ibge.gov.br/Estimativas_de_Populacao/Estimativas_2025/estimativa_dou_2025.ods"
+  fallback_urls: []
+
+  # Colunas esperadas neste CSV:
+  #  - cod_municipio (IBGE 7 dígitos)
+  #  - nome_municipio
+  #  - uf
+  #  - populacao
+
+files:
+  bronze_filename: "estimativa_dou_2025.ods"     # <- era .csv
+  silver_filename: "ibge_populacao_2025_clean.csv"
+  gold_by_state:   "gold_populacao_por_uf.csv"
+  gold_topN:       "gold_top_municipios.csv"
+
+gold:
+  top_n: 20
