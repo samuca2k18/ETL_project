@@ -15,14 +15,6 @@ from src.transforms import silver_pipeline, gold_populacao_por_uf, gold_top_muni
 
 
 def _norm(s: str) -> str:
-    s = unicodedata.normalize("NFKD", str(s))
-    s = "".join(ch for ch in s if not unicodedata.combining(ch))
-    s = s.lower()
-    s = re.sub(r"[^a-z0-9]+", " ", s)
-    return re.sub(r"\s+", " ", s).strip()
-
-
-def _norm(s: str) -> str:
     s = unicodedata.normalize("NFKD", str(s or ""))
     s = "".join(ch for ch in s if not unicodedata.combining(ch))
     s = s.lower()
